@@ -4,7 +4,7 @@ import { recipeSearch } from './data';
 import NavBar from './Components/NavBar';
 import FavRecipe from './pages/FavRecipe';
 import LandingPage from './pages/LandingPage';
-import Search from './pages/Search';
+import SearchResults from './pages/SearchResults';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={LandingPage} />
           <Route path="/FavRecipe" component={FavRecipe} />
-          <Route path="/Search" exact component={Search} />
+          <Route path="/Search" exact component={SearchResults} />
         </Switch>
       </div>
     </Router>

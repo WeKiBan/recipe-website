@@ -12,7 +12,6 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import Button from '@material-ui/core/Button';
 import LocalDiningIcon from '@material-ui/icons/LocalDining';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -65,7 +64,7 @@ function NavBar() {
             <LocalDiningIcon className={classes.logoIcon} fontSize="large" />
           </Typography>
           <div className={classes.buttons}>
-            <Button color="inherit" component={RouterLink}>
+            <Button color="inherit" component={RouterLink} to="/Search">
               Popular Recipes
             </Button>
             <Button color="inherit" component={RouterLink}>
