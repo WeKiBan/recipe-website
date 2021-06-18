@@ -79,7 +79,7 @@ function LandingPage() {
           color="white"
           fontWeight={300}
         >
-          1000s of delicious recipes at your finger tips!
+          1000's of delicious recipes at your finger tips!
         </Typography>
       </div>
     </div>

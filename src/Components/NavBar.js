@@ -57,7 +57,6 @@ function NavBar() {
             className={classes.title}
             component={RouterLink}
             to={'/'}
-            color="white"
             variant="h4"
           >
             SpoonFed
@@ -67,7 +66,7 @@ function NavBar() {
             <Button color="inherit" component={RouterLink} to="/Search">
               Popular Recipes
             </Button>
-            <Button color="inherit" component={RouterLink}>
+            <Button color="inherit" to="/" component={RouterLink}>
               Saved Recipes
               <BookmarkBorderIcon />
             </Button>

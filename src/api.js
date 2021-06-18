@@ -7,5 +7,5 @@ const fetchMyApi = async () => {
   const {
     data: { data },
   } = await response.json();
-  console.log(data);
+  return data;
 };
