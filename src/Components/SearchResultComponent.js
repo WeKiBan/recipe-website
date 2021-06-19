@@ -6,23 +6,24 @@ import { makeStyles } from '@material-ui/core';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import { IconButton } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSeedling, faBreadSlice } from '@fortawesome/free-solid-svg-icons';
+import {
+  faSeedling,
+  faBreadSlice,
+  faCarrot,
+} from '@fortawesome/free-solid-svg-icons';
 
 const useStyles = makeStyles((theme) => ({
   recipeContainer: {
     fontFamily: 'lato',
     color: '#333333',
     textAlign: 'left',
-    maxWidth: '60%',
+    width: '60%',
     backgroundColor: 'white',
     padding: theme.spacing(2),
     margin: '2px',
     [theme.breakpoints.down('md')]: {
-      maxWidth: '90%',
+      width: '90%',
     },
-  },
-  border: {
-    border: 'solid 2px black',
   },
   imageContainer: {
     textAlign: 'center',
@@ -53,14 +54,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SearchResultComponent({ recipe }) {
-  console.log(recipe.healthLabels);
+  console.log(recipe);
   const classes = useStyles();
   const {
     label,
     image,
     totalTime,
     calories,
-    ingredients,
+    ingredientLines,
     healthLabels,
     yield: feeds,
   } = recipe;
@@ -75,9 +76,7 @@ function SearchResultComponent({ recipe }) {
         <Grid className={classes.infoContainer} item xs={9}>
           <Typography variant="h5">{label}</Typography>
           <Typography className={classes.ingredients}>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad est
-            vitae dignissimos natus facilis, consequatur sed ea autem cumque
-            porro molestias harum quaerat cupiditate placeat.
+            {ingredientLines.toString()}
           </Typography>
         </Grid>
         <Grid className={classes.iconButton} item xs={1}>
@@ -89,14 +88,41 @@ function SearchResultComponent({ recipe }) {
 
       <div className={classes.bottomContainer}>
         <Typography className={classes.item}>Serves {feeds}</Typography>
-        <Typography className={classes.item}>
-          Vegetarian
-          <FontAwesomeIcon className={classes.icon} icon={faSeedling} />
-        </Typography>
-        <Typography className={classes.item}>
-          Gluten
-          <FontAwesomeIcon className={classes.icon} icon={faBreadSlice} />
-        </Typography>
+        {healthLabels
+          .filter((label) => {
+            if (
+              label === 'Vegetarian' ||
+              label === 'Vegan' ||
+              label === 'Gluten-free'
+            ) {
+              return label;
+            }
+          })
+          .map((label) => {
+            return (
+              (label === 'Vegetarian' && (
+                <Typography className={classes.item}>
+                  Vegetarian
+                  <FontAwesomeIcon className={classes.icon} icon={faSeedling} />
+                </Typography>
+              )) ||
+              (label === 'Vegan' && (
+                <Typography className={classes.item}>
+                  Vegan
+                  <FontAwesomeIcon className={classes.icon} icon={faCarrot} />
+                </Typography>
+              )) ||
+              (label === 'Gluten-free' && (
+                <Typography className={classes.item}>
+                  Gluten
+                  <FontAwesomeIcon
+                    className={classes.icon}
+                    icon={faBreadSlice}
+                  />
+                </Typography>
+              ))
+            );
+          })}
       </div>
     </div>
   );
