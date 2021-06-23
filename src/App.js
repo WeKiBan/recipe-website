@@ -6,17 +6,20 @@ import FavRecipe from './pages/FavRecipe';
 import LandingPage from './pages/LandingPage';
 import SearchResults from './pages/SearchResults';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { AppProvider } from './contexts/context';
 
 function App() {
   return (
     <Router>
       <div className="app">
         <NavBar />
-        <Switch>
-          <Route path="/" exact component={LandingPage} />
-          <Route path="/FavRecipe" component={FavRecipe} />
-          <Route path="/Search" exact component={SearchResults} />
-        </Switch>
+        <AppProvider>
+          <Switch>
+            <Route path="/" exact component={LandingPage} />
+            <Route path="/FavRecipe" component={FavRecipe} />
+            <Route path="/SearchResults" component={SearchResults} />
+          </Switch>
+        </AppProvider>
       </div>
     </Router>
   );
