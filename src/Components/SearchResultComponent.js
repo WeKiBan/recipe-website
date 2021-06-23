@@ -5,12 +5,15 @@ import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import { IconButton } from '@material-ui/core';
+import Collapse from '@material-ui/core/Collapse';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {
   faSeedling,
   faBreadSlice,
   faCarrot,
 } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   recipeContainer: {
@@ -28,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
   imageContainer: {
     textAlign: 'center',
   },
-  infoContainer: {
-    textAlign: 'left',
-  },
   image: {
     width: '100%',
+  },
+  infoContainer: {
+    textAlign: 'left',
   },
   ingredients: {
     fontSize: '18px',
@@ -54,8 +57,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SearchResultComponent({ recipe }) {
-  console.log(recipe);
   const classes = useStyles();
+
+  const [expanded, setExpanded] = useState(false);
+
+  const handleClickExpand = () => {
+    setExpanded(!expanded);
+  };
+  console.log(recipe);
+
   const {
     label,
     image,
@@ -66,17 +76,21 @@ function SearchResultComponent({ recipe }) {
     yield: feeds,
   } = recipe;
 
+  const ingredientsString = ingredientLines.toString();
+
   return (
     <div className={classes.recipeContainer}>
       <Grid container spacing={2}>
-        <Grid className={classes.imageContainer} item xs={2}>
+        <Grid className={classes.imageContainer} item xs={4} sm={2}>
           <img className={classes.image} src={image} alt={label} />
         </Grid>
 
-        <Grid className={classes.infoContainer} item xs={9}>
+        <Grid className={classes.infoContainer} item xs={6} sm={9}>
           <Typography variant="h5">{label}</Typography>
           <Typography className={classes.ingredients}>
-            {ingredientLines.toString()}
+            {ingredientsString.length > 200
+              ? ingredientsString.substring(0, 200) + '...'
+              : ingredientsString}
           </Typography>
         </Grid>
         <Grid className={classes.iconButton} item xs={1}>
