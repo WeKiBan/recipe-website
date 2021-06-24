@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
 import { IconButton } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,7 +13,8 @@ import {
   faBreadSlice,
   faCarrot,
 } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+
+import { useGlobalContext } from '../contexts/context';
 
 const useStyles = makeStyles((theme) => ({
   recipeContainer: {
@@ -60,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchResultComponent({ recipe }) {
   const classes = useStyles();
+  const { savedRecipes, setSavedRecipes } = useGlobalContext();
 
   const {
     uri,
@@ -73,7 +76,23 @@ function SearchResultComponent({ recipe }) {
     yield: feeds,
   } = recipe;
 
+  const handleSetSavedRecipes = (e) => {
+    e.preventDefault();
+    let newSavedRecipes;
+
+    if (isSavedRecipe) {
+      newSavedRecipes = savedRecipes.filter((recipe) => uri !== recipe.uri);
+    } else {
+      newSavedRecipes = [...savedRecipes, recipe];
+    }
+    setSavedRecipes(newSavedRecipes);
+  };
+
   const ingredientsString = ingredientLines.toString();
+
+  const isSavedRecipe = savedRecipes.find((recipe) => recipe.uri === uri)
+    ? true
+    : false;
 
   return (
     <Box
@@ -96,8 +115,8 @@ function SearchResultComponent({ recipe }) {
           </Typography>
         </Grid>
         <Grid className={classes.iconButton} item xs={1}>
-          <IconButton>
-            <BookmarkBorderIcon />
+          <IconButton onClick={handleSetSavedRecipes}>
+            {isSavedRecipe ? <BookmarkIcon /> : <BookmarkBorderIcon />}
           </IconButton>
         </Grid>
       </Grid>

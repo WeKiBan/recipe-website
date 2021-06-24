@@ -5,6 +5,7 @@ import backgroundImage from '../images/landingPageSplash.jpg';
 import SearchBar from 'material-ui-search-bar';
 import Typography from '@material-ui/core/Typography';
 import LocalDiningIcon from '@material-ui/icons/LocalDining';
+import { useGlobalContext } from '../contexts/context';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -58,27 +59,22 @@ const useStyles = makeStyles((theme) => ({
 
 function LandingPage() {
   const classes = useStyles();
-  const [searchValue, setSearchValue] = useState('');
+  const { searchQuery, setSearchQuery } = useGlobalContext();
   return (
     <div className={classes.container}>
       <div className={classes.content}>
-        <Typography className={classes.heading} variant="h1" color="white">
+        <Typography className={classes.heading} variant="h1">
           SpoonFed <LocalDiningIcon className={classes.logoIcon} />
         </Typography>
         <SearchBar
           className={classes.searchBar}
           placeholder="Search Recipes..."
-          value={searchValue}
+          value={searchQuery}
           onChange={(newValue) => {
-            setSearchValue(newValue);
+            setSearchQuery(newValue);
           }}
         />
-        <Typography
-          className={classes.message}
-          variant="h5"
-          color="white"
-          fontWeight={300}
-        >
+        <Typography className={classes.message} variant="h5" fontWeight={300}>
           1000's of delicious recipes at your finger tips!
         </Typography>
       </div>
