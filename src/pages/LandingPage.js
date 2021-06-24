@@ -6,6 +6,7 @@ import SearchBar from 'material-ui-search-bar';
 import Typography from '@material-ui/core/Typography';
 import LocalDiningIcon from '@material-ui/icons/LocalDining';
 import { useGlobalContext } from '../contexts/context';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -55,25 +56,38 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: theme.spacing(0),
     },
   },
+  form: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+  },
 }));
 
 function LandingPage() {
   const classes = useStyles();
   const { searchQuery, setSearchQuery } = useGlobalContext();
+  const history = useHistory();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('submit');
+    history.push('/SearchResults');
+  };
   return (
     <div className={classes.container}>
       <div className={classes.content}>
         <Typography className={classes.heading} variant="h1">
           SpoonFed <LocalDiningIcon className={classes.logoIcon} />
         </Typography>
-        <SearchBar
-          className={classes.searchBar}
-          placeholder="Search Recipes..."
-          value={searchQuery}
-          onChange={(newValue) => {
-            setSearchQuery(newValue);
-          }}
-        />
+        <form className={classes.form} onSubmit={handleSubmit}>
+          <SearchBar
+            className={classes.searchBar}
+            placeholder="Search Recipes..."
+            value={searchQuery}
+            onChange={(newValue) => {
+              setSearchQuery(newValue);
+            }}
+          />
+        </form>
         <Typography className={classes.message} variant="h5" fontWeight={300}>
           1000's of delicious recipes at your finger tips!
         </Typography>

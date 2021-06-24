@@ -63,9 +63,6 @@ function NavBar() {
             <LocalDiningIcon className={classes.logoIcon} fontSize="large" />
           </Typography>
           <div className={classes.buttons}>
-            <Button color="inherit" component={RouterLink} to="/SearchResults">
-              Popular Recipes
-            </Button>
             <Button color="inherit" to="/" component={RouterLink}>
               Saved Recipes
               <BookmarkBorderIcon />
