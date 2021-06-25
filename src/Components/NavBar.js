@@ -11,6 +11,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import Button from '@material-ui/core/Button';
 import LocalDiningIcon from '@material-ui/icons/LocalDining';
+import { useGlobalContext } from '../contexts/context';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,12 +25,6 @@ const useStyles = makeStyles((theme) => ({
   logoIcon: {
     marginBottom: theme.spacing(-1),
     marginLeft: theme.spacing(1),
-  },
-  menuButton: {
-    display: 'block',
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
   },
   title: {
     fontFamily: 'Dancing Script',
@@ -49,11 +44,13 @@ const useStyles = makeStyles((theme) => ({
 
 function NavBar() {
   const classes = useStyles();
+  const { setSearchQuery } = useGlobalContext();
   return (
     <div className={classes.root}>
       <AppBar className={classes.nav} position="static">
         <Toolbar>
           <Typography
+            onClick={() => setSearchQuery('')}
             className={classes.title}
             component={RouterLink}
             to={'/'}
@@ -62,20 +59,16 @@ function NavBar() {
             SpoonFed
             <LocalDiningIcon className={classes.logoIcon} fontSize="large" />
           </Typography>
-          <div className={classes.buttons}>
-            <Button color="inherit" to="/" component={RouterLink}>
-              Saved Recipes
-              <BookmarkBorderIcon />
-            </Button>
-          </div>
-          <IconButton
-            className={classes.menuButton}
-            edge="start"
-            aria-label="menu"
+
+          <Button
+            onClick={() => setSearchQuery('')}
             color="inherit"
+            to="/SavedRecipes"
+            component={RouterLink}
           >
-            <MenuIcon />
-          </IconButton>
+            Saved Recipes
+            <BookmarkBorderIcon />
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

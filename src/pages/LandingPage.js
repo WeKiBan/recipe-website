@@ -67,11 +67,12 @@ function LandingPage() {
   const classes = useStyles();
   const { searchQuery, setSearchQuery } = useGlobalContext();
   const history = useHistory();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit');
     history.push('/SearchResults');
   };
+  
   return (
     <div className={classes.container}>
       <div className={classes.content}>

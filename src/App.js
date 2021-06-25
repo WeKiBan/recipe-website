@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { recipeSearch } from './data';
 import NavBar from './Components/NavBar';
-import FavRecipe from './pages/FavRecipe';
+import SavedRecipes from './pages/SavedRecipes';
 import LandingPage from './pages/LandingPage';
 import SearchResults from './pages/SearchResults';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -12,11 +12,12 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <NavBar />
         <AppProvider>
+          <NavBar />
+
           <Switch>
             <Route path="/" exact component={LandingPage} />
-            <Route path="/FavRecipe" component={FavRecipe} />
+            <Route path="/SavedRecipes" component={SavedRecipes} />
             <Route path="/SearchResults" component={SearchResults} />
           </Switch>
         </AppProvider>

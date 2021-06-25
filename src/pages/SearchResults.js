@@ -8,26 +8,27 @@ import SearchBar from 'material-ui-search-bar';
 import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    padding: theme.spacing(2),
-    background: '#f5f5f5',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   searchContainer: {
     backgroundColor: 'lightGrey',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     opacity: 1,
+    height: '80px',
   },
   searchBar: {
     width: '80%',
     maxWidth: 900,
-    margin: theme.spacing(2, 0),
     borderRadius: '50px',
+  },
+  container: {
+    padding: '20px',
+    background: '#f5f5f5',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    height: 'calc(100vh - 220px)',
+    overflowX: 'Scroll',
   },
 }));
 
