@@ -62,7 +62,8 @@ const useStyles = makeStyles((theme) => ({
 
 function SearchResultComponent({ recipe }) {
   const classes = useStyles();
-  const { savedRecipes, setSavedRecipes } = useGlobalContext();
+  const { savedRecipes, setSavedRecipes, saveToLocalStorage } =
+    useGlobalContext();
 
   const {
     uri,
@@ -86,6 +87,7 @@ function SearchResultComponent({ recipe }) {
       newSavedRecipes = [...savedRecipes, recipe];
     }
     setSavedRecipes(newSavedRecipes);
+    saveToLocalStorage(newSavedRecipes);
   };
 
   const ingredientsString = ingredientLines.toString();

@@ -1,12 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { recipeSearch } from '../data';
+import {
+  fetchSavedRecipes,
+  saveToLocalStorage,
+} from '../localStorageFunctions';
 
 const AppContext = React.createContext();
 
 export const AppProvider = ({ children }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState();
   const [searchResults, setSearchResults] = useState(recipeSearch.hits);
-  const [savedRecipes, setSavedRecipes] = useState([]);
+  const [savedRecipes, setSavedRecipes] = useState(fetchSavedRecipes());
 
   return (
     <AppContext.Provider
@@ -17,6 +21,7 @@ export const AppProvider = ({ children }) => {
         setSearchResults,
         savedRecipes,
         setSavedRecipes,
+        saveToLocalStorage,
       }}
     >
       {children}
