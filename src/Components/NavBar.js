@@ -61,7 +61,7 @@ function NavBar() {
             to={'/'}
             variant="h4"
           >
-            SpoonFed
+            Spoonly
             <LocalDiningIcon className={classes.logoIcon} fontSize="large" />
           </Typography>
 

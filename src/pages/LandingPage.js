@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import backgroundImage from '../images/landingPageSplash.jpg';
+import backgroundImage from '../images/backgroundImage.jpg';
 import SearchBar from 'material-ui-search-bar';
 import Typography from '@material-ui/core/Typography';
 import LocalDiningIcon from '@material-ui/icons/LocalDining';
@@ -72,12 +72,12 @@ function LandingPage() {
     e.preventDefault();
     history.push('/SearchResults');
   };
-  
+
   return (
     <div className={classes.container}>
       <div className={classes.content}>
         <Typography className={classes.heading} variant="h1">
-          SpoonFed <LocalDiningIcon className={classes.logoIcon} />
+          Spoonly <LocalDiningIcon className={classes.logoIcon} />
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
           <SearchBar
