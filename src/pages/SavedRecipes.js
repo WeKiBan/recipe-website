@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SavedRecipes() {
-  const { savedRecipes, setSavedRecipes } = useGlobalContext();
+  const { savedRecipes } = useGlobalContext();
   const classes = useStyles();
 
   return (
