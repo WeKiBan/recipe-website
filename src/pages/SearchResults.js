@@ -1,7 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import SearchResultComponent from '../Components/SearchResultComponent';
-import { recipeSearch } from '../data';
 import { makeStyles } from '@material-ui/core';
 import { useGlobalContext } from '../contexts/context';
 import SearchBar from 'material-ui-search-bar';
@@ -33,8 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Search() {
-  const { searchResults, setSearchResults, searchQuery, setSearchQuery } =
-    useGlobalContext();
+  const { searchResults, searchQuery, setSearchQuery } = useGlobalContext();
 
   const classes = useStyles();
   return (

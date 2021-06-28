@@ -1,7 +1,7 @@
 const LOCAL_STORAGE_KEY = 'savedRecipes';
 
 export const fetchSavedRecipes = () => {
-  const savedRecipes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+  let savedRecipes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
   if (!savedRecipes) {
     savedRecipes = [];
   }

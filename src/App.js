@@ -1,6 +1,4 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
-import { recipeSearch } from './data';
 import NavBar from './Components/NavBar';
 import SavedRecipes from './pages/SavedRecipes';
 import LandingPage from './pages/LandingPage';
@@ -14,7 +12,6 @@ function App() {
       <div className="app">
         <AppProvider>
           <NavBar />
-
           <Switch>
             <Route path="/" exact component={LandingPage} />
             <Route path="/SavedRecipes" component={SavedRecipes} />

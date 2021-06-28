@@ -70,8 +70,6 @@ function SearchResultComponent({ recipe }) {
     url,
     label,
     image,
-    totalTime,
-    calories,
     ingredientLines,
     healthLabels,
     yield: feeds,
@@ -82,7 +80,7 @@ function SearchResultComponent({ recipe }) {
     let newSavedRecipes;
 
     if (isSavedRecipe) {
-      newSavedRecipes = savedRecipes.filter((recipe) => uri !== recipe.uri);
+      newSavedRecipes = savedRecipes.filter((item) => uri !== item.uri);
     } else {
       newSavedRecipes = [...savedRecipes, recipe];
     }
@@ -126,15 +124,12 @@ function SearchResultComponent({ recipe }) {
       <div className={classes.bottomContainer}>
         <Typography className={classes.item}>Serves {feeds}</Typography>
         {healthLabels
-          .filter((label) => {
-            if (
+          .filter(
+            (label) =>
               label === 'Vegetarian' ||
               label === 'Vegan' ||
               label === 'Gluten-free'
-            ) {
-              return label;
-            }
-          })
+          )
           .map((label, index) => {
             return (
               (label === 'Vegetarian' && (

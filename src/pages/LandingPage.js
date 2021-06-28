@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import backgroundImage from '../images/backgroundImage.jpg';
 import SearchBar from 'material-ui-search-bar';
