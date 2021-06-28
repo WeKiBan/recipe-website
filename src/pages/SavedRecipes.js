@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     background: '#f5f5f5',
     display: 'flex',
     flexWrap: 'wrap',
-    alignItems: 'center',
+    alignContent: 'flex-start',
     justifyContent: 'center',
     height: 'calc(100vh - 140px)',
     overflowX: 'Scroll',

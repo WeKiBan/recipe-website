@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,6 +12,7 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import Button from '@material-ui/core/Button';
 import LocalDiningIcon from '@material-ui/icons/LocalDining';
 import { useGlobalContext } from '../contexts/context';
+import { spacing } from '@material-ui/system';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,11 +41,15 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
     },
   },
+  searchIcon: {
+    marginLeft: theme.spacing(1),
+  },
 }));
 
 function NavBar() {
   const classes = useStyles();
   const { setSearchQuery } = useGlobalContext();
+  const { pathname } = useLocation();
   return (
     <div className={classes.root}>
       <AppBar className={classes.nav} position="static">
@@ -60,15 +65,27 @@ function NavBar() {
             <LocalDiningIcon className={classes.logoIcon} fontSize="large" />
           </Typography>
 
-          <Button
-            onClick={() => setSearchQuery('')}
-            color="inherit"
-            to="/SavedRecipes"
-            component={RouterLink}
-          >
-            Saved Recipes
-            <BookmarkBorderIcon />
-          </Button>
+          {pathname === '/SavedRecipes' ? (
+            <Button
+              onClick={() => setSearchQuery('')}
+              color="inherit"
+              to="/"
+              component={RouterLink}
+            >
+              Search
+              <SearchIcon className={classes.searchIcon} />
+            </Button>
+          ) : (
+            <Button
+              onClick={() => setSearchQuery('')}
+              color="inherit"
+              to="/SavedRecipes"
+              component={RouterLink}
+            >
+              Saved Recipes
+              <BookmarkBorderIcon />
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>
