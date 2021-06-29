@@ -48,7 +48,11 @@ function NavBar() {
   const { pathname } = useLocation();
   return (
     <div className={classes.root}>
-      <AppBar className={classes.nav} position="static">
+      <AppBar
+        style={pathname === '/' ? { display: 'none' } : {}}
+        className={classes.nav}
+        position="static"
+      >
         <Toolbar>
           <Typography
             onClick={() => setSearchQuery('')}

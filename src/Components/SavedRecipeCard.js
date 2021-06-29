@@ -13,7 +13,6 @@ import { useGlobalContext } from '../contexts/context';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 345,
-    height: 250,
     margin: theme.spacing(1),
     fontFamily: 'lato',
     fontWeight: '100',

@@ -6,16 +6,26 @@ import Typography from '@material-ui/core/Typography';
 import LocalDiningIcon from '@material-ui/icons/LocalDining';
 import { useGlobalContext } from '../contexts/context';
 import { useHistory } from 'react-router-dom';
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import Button from '@material-ui/core/Button';
+import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(${backgroundImage})`,
     backgroundSize: 'cover',
-    height: `calc(100vh - 100px)`,
+    height: `100vh`,
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
+  },
+  savedRecipesLink: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    color: 'white',
   },
   content: {
     display: 'flex',
@@ -74,6 +84,16 @@ function LandingPage() {
 
   return (
     <div className={classes.container}>
+      <Button
+        className={classes.savedRecipesLink}
+        onClick={() => setSearchQuery('')}
+        color="inherit"
+        to="/SavedRecipes"
+        component={RouterLink}
+      >
+        Saved Recipes
+        <BookmarkBorderIcon />
+      </Button>
       <div className={classes.content}>
         <Typography className={classes.heading} variant="h1">
           Spoonly <LocalDiningIcon className={classes.logoIcon} />
