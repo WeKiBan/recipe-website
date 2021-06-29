@@ -9,6 +9,8 @@ import { useHistory } from 'react-router-dom';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import Button from '@material-ui/core/Button';
 import { Link as RouterLink } from 'react-router-dom';
+import { useState } from 'react';
+import { useWindowSize } from '../helperFunctions/windowResize';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -20,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
+    overflow: 'hidden',
   },
   savedRecipesLink: {
     position: 'absolute',
@@ -77,13 +80,15 @@ function LandingPage() {
   const { searchQuery, setSearchQuery } = useGlobalContext();
   const history = useHistory();
 
+  const size = useWindowSize();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     history.push('/SearchResults');
   };
 
   return (
-    <div className={classes.container}>
+    <div style={{ height: size }} className={classes.container}>
       <Button
         className={classes.savedRecipesLink}
         onClick={() => setSearchQuery('')}
