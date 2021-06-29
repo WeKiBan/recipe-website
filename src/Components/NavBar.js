@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     height: '100px',
     backgroundColor: '#379683',
     justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      height: '70px',
+    },
   },
   logoIcon: {
     marginBottom: theme.spacing(-1),
