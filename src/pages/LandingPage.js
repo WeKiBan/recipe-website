@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
   container: {
     background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(${backgroundImage})`,
     backgroundSize: 'cover',
-    height: `100vh`,
-    minHeight: '500px',
+    height: '100vh',
+    maxHeight: '-webkit-fill-available',
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
