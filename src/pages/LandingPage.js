@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(${backgroundImage})`,
     backgroundSize: 'cover',
     height: '100vh',
-    maxHeight: '-webkit-fill-available',
+    minHeight: '600px',
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
