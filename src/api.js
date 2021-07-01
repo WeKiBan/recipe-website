@@ -10,6 +10,7 @@ const fetchMyApi = async (searchQuery) => {
   } catch (err) {
     console.log(err);
   }
+  return [];
 };
 
 export default fetchMyApi;
