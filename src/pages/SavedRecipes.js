@@ -1,10 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
 import { useGlobalContext } from '../contexts/context';
 import Box from '@material-ui/core/Box';
-import SavedRecipeCard from '../Components/SavedRecipeCard';
 import SearchResultsComponent from '../Components/SearchResultComponent';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -24,6 +23,9 @@ function SavedRecipes() {
 
   return (
     <Box className={classes.container}>
+      <Typography gutterBottom component="h1" variant="h4">
+        Saved Recipes
+      </Typography>
       {savedRecipes.map((recipe) => {
         return <SearchResultsComponent savedRecipe={true} recipe={recipe} />;
       })}
