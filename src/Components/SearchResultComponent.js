@@ -15,6 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { useGlobalContext } from '../contexts/context';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 const useStyles = makeStyles((theme) => ({
   recipeContainer: {
@@ -60,10 +61,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SearchResultComponent({ recipe }) {
+function SearchResultComponent({ recipe, savedRecipe }) {
   const classes = useStyles();
   const { savedRecipes, setSavedRecipes, saveToLocalStorage } =
     useGlobalContext();
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    let filteredArray = savedRecipes.filter((item) => item.url !== recipe.url);
+
+    setSavedRecipes(filteredArray);
+  };
 
   const {
     uri,
@@ -115,9 +123,15 @@ function SearchResultComponent({ recipe }) {
           </Typography>
         </Grid>
         <Grid className={classes.iconButton} item xs={1}>
-          <IconButton onClick={handleSetSavedRecipes}>
-            {isSavedRecipe ? <BookmarkIcon /> : <BookmarkBorderIcon />}
-          </IconButton>
+          {savedRecipe ? (
+            <IconButton onClick={handleDelete} color="primary">
+              <DeleteOutlineIcon className={classes.deleteIcon} />
+            </IconButton>
+          ) : (
+            <IconButton onClick={handleSetSavedRecipes}>
+              {isSavedRecipe ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+            </IconButton>
+          )}
         </Grid>
       </Grid>
 

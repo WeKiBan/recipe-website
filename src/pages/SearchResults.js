@@ -31,7 +31,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Search() {
-  const { searchResults, searchQuery, setSearchQuery } = useGlobalContext();
+  const {
+    searchResults,
+    searchQuery,
+    setSearchQuery,
+  } = useGlobalContext();
+
+
 
   const classes = useStyles();
   return (
@@ -45,7 +51,11 @@ function Search() {
       </Box>
       <Box className={classes.container}>
         {searchResults.map(({ recipe }, index) => (
-          <SearchResultComponent key={index} recipe={recipe} />
+          <SearchResultComponent
+            savedRecipe={false}
+            key={index}
+            recipe={recipe}
+          />
         ))}
       </Box>
     </>
