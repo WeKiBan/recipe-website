@@ -13,7 +13,6 @@ import {
   faBreadSlice,
   faCarrot,
 } from '@fortawesome/free-solid-svg-icons';
-
 import { useGlobalContext } from '../contexts/context';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 

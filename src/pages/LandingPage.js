@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import { Link as RouterLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useWindowSize } from '../helperFunctions/windowResize';
+import fetchMyApi from '../api';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -77,14 +78,20 @@ const useStyles = makeStyles((theme) => ({
 
 function LandingPage() {
   const classes = useStyles();
-  const { searchQuery, setSearchQuery } = useGlobalContext();
+  const { searchQuery, setSearchQuery, setSearchResults } = useGlobalContext();
   const history = useHistory();
 
   const size = useWindowSize();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSearchResults([]);
     history.push('/SearchResults');
+    const results = await fetchMyApi(searchQuery);
+
+    setTimeout(function () {
+      setSearchResults(results);
+    }, 1000);
   };
 
   return (
