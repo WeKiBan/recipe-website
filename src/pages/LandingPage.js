@@ -9,7 +9,6 @@ import { useHistory } from 'react-router-dom';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import Button from '@material-ui/core/Button';
 import { Link as RouterLink } from 'react-router-dom';
-import { useState } from 'react';
 import { useWindowSize } from '../helperFunctions/windowResize';
 import fetchMyApi from '../api';
 
