@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { recipeSearch } from '../data';
 import {
   fetchSavedRecipes,
   saveToLocalStorage,
@@ -9,7 +8,7 @@ const AppContext = React.createContext();
 
 export const AppProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState();
-  const [searchResults, setSearchResults] = useState(recipeSearch.hits);
+  const [searchResults, setSearchResults] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState(fetchSavedRecipes());
 
   return (
