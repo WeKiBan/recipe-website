@@ -26,9 +26,17 @@ function SavedRecipes() {
       <Typography gutterBottom component="h1" variant="h4">
         Saved Recipes
       </Typography>
-      {savedRecipes.map((recipe) => {
-        return <SearchResultsComponent savedRecipe={true} recipe={recipe} />;
-      })}
+      {savedRecipes.length === 0
+        ? 'No saved recipes'
+        : savedRecipes.map((recipe, index) => {
+            return (
+              <SearchResultsComponent
+                key={index}
+                savedRecipe={true}
+                recipe={recipe}
+              />
+            );
+          })}
     </Box>
   );
 }

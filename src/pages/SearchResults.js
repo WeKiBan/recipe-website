@@ -4,6 +4,9 @@ import { makeStyles } from '@material-ui/core';
 import { useGlobalContext } from '../contexts/context';
 import SearchBar from 'material-ui-search-bar';
 import Box from '@material-ui/core/Box';
+import fetchMyApi from '../api';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Loader from 'react-loader-spinner';
 
 const useStyles = makeStyles((theme) => ({
   searchContainer: {
@@ -13,6 +16,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     opacity: 1,
     height: '80px',
+  },
+  form: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
   },
   searchBar: {
     width: '80%',
@@ -31,32 +39,44 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Search() {
-  const {
-    searchResults,
-    searchQuery,
-    setSearchQuery,
-  } = useGlobalContext();
+  const { searchResults, setSearchResults, searchQuery, setSearchQuery } =
+    useGlobalContext();
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSearchResults([]);
 
+    const results = await fetchMyApi(searchQuery);
+
+    setTimeout(function () {
+      setSearchResults(results);
+    }, 1000);
+  };
 
   const classes = useStyles();
   return (
     <>
       <Box className={classes.searchContainer}>
-        <SearchBar
-          value={searchQuery}
-          onChange={(newValue) => setSearchQuery(newValue)}
-          className={classes.searchBar}
-        />
+        <form onSubmit={handleSubmit} className={classes.form}>
+          <SearchBar
+            value={searchQuery}
+            onChange={(newValue) => setSearchQuery(newValue)}
+            className={classes.searchBar}
+          />
+        </form>
       </Box>
       <Box className={classes.container}>
-        {searchResults.map(({ recipe }, index) => (
-          <SearchResultComponent
-            savedRecipe={false}
-            key={index}
-            recipe={recipe}
-          />
-        ))}
+        {searchResults.length === 0 ? (
+          <Loader color="#379683" />
+        ) : (
+          searchResults.map(({ recipe }, index) => (
+            <SearchResultComponent
+              savedRecipe={false}
+              key={index}
+              recipe={recipe}
+            />
+          ))
+        )}
       </Box>
     </>
   );

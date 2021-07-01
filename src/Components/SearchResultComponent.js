@@ -71,6 +71,7 @@ function SearchResultComponent({ recipe, savedRecipe }) {
     let filteredArray = savedRecipes.filter((item) => item.url !== recipe.url);
 
     setSavedRecipes(filteredArray);
+    saveToLocalStorage(filteredArray);
   };
 
   const {
