@@ -6,6 +6,7 @@ const fetchMyApi = async (searchQuery) => {
   try {
     const response = await fetch(url + searchQuery);
     const data = await response.json();
+    console.log(data.hits);
     return data.hits;
   } catch (err) {
     console.log(err);
