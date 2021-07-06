@@ -45,12 +45,15 @@ function Search() {
     e.preventDefault();
     setSearchResults([]);
 
-    const results = await fetch(
+    const response = await fetch(
       `/.netlify/functions/fetch-data?query=${searchQuery}`
     );
 
+    const data = await response.json();
+    console.log(data);
+
     setTimeout(function () {
-      setSearchResults(results.body);
+      setSearchResults(data.hits);
     }, 1000);
   };
 
@@ -67,7 +70,7 @@ function Search() {
         </form>
       </Box>
       <Box className={classes.container}>
-        {searchResults.length === 0 ? (
+        {!searchResults === 0 ? (
           <Loader color="#379683" />
         ) : (
           searchResults.map(({ recipe }, index) => (

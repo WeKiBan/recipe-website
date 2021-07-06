@@ -90,6 +90,8 @@ function LandingPage() {
     );
 
     const data = await response.json();
+    console.log(data);
+    console.log(data.hits);
 
     setTimeout(function () {
       setSearchResults(data.hits);
