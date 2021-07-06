@@ -50,7 +50,7 @@ function Search() {
     );
 
     setTimeout(function () {
-      setSearchResults(results);
+      setSearchResults(results.body);
     }, 1000);
   };
 

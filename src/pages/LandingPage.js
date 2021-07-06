@@ -11,7 +11,6 @@ import Button from '@material-ui/core/Button';
 import { Link as RouterLink } from 'react-router-dom';
 import { useWindowSize } from '../helperFunctions/windowResize';
 
-
 const useStyles = makeStyles((theme) => ({
   container: {
     background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url(${backgroundImage})`,
@@ -86,12 +85,14 @@ function LandingPage() {
     e.preventDefault();
     setSearchResults([]);
     history.push('/SearchResults');
-    const results = await fetch(
+    const response = await fetch(
       `/.netlify/functions/fetch-data?query=${searchQuery}`
     );
 
+    const data = await response.json();
+
     setTimeout(function () {
-      setSearchResults(results);
+      setSearchResults(data.hits);
     }, 1000);
   };
 
