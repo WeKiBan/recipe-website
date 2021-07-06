@@ -76,13 +76,15 @@ const useStyles = makeStyles((theme) => ({
 
 function LandingPage() {
   const classes = useStyles();
-  const { searchQuery, setSearchQuery, setSearchResults } = useGlobalContext();
+  const { searchQuery, setSearchQuery, setSearchResults, setIsLoading } =
+    useGlobalContext();
   const history = useHistory();
 
   const size = useWindowSize();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     setSearchResults([]);
     history.push('/SearchResults');
     const response = await fetch(
@@ -90,11 +92,11 @@ function LandingPage() {
     );
 
     const data = await response.json();
-    console.log(data);
-    console.log(data.hits);
 
     setTimeout(function () {
+      setIsLoading(false);
       setSearchResults(data.hits);
+      setIsLoading(false);
     }, 1000);
   };
 

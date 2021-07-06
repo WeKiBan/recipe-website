@@ -6,6 +6,7 @@ import SearchBar from 'material-ui-search-bar';
 import Box from '@material-ui/core/Box';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   searchContainer: {
@@ -38,11 +39,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Search() {
-  const { searchResults, setSearchResults, searchQuery, setSearchQuery } =
-    useGlobalContext();
+  const {
+    searchResults,
+    setSearchResults,
+    searchQuery,
+    setSearchQuery,
+    isLoading,
+    setIsLoading,
+  } = useGlobalContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     setSearchResults([]);
 
     const response = await fetch(
@@ -50,10 +58,10 @@ function Search() {
     );
 
     const data = await response.json();
-    console.log(data);
 
     setTimeout(function () {
       setSearchResults(data.hits);
+      setIsLoading(false);
     }, 1000);
   };
 
@@ -70,8 +78,10 @@ function Search() {
         </form>
       </Box>
       <Box className={classes.container}>
-        {!searchResults === 0 ? (
+        {isLoading ? (
           <Loader color="#379683" />
+        ) : searchResults.length === 0 ? (
+          <Typography variant="h4">No Recipes Found</Typography>
         ) : (
           searchResults.map(({ recipe }, index) => (
             <SearchResultComponent

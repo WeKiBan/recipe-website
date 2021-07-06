@@ -10,6 +10,7 @@ export const AppProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState();
   const [searchResults, setSearchResults] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState(fetchSavedRecipes());
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <AppContext.Provider
@@ -21,6 +22,8 @@ export const AppProvider = ({ children }) => {
         savedRecipes,
         setSavedRecipes,
         saveToLocalStorage,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}
