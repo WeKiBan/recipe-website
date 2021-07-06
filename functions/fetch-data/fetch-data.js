@@ -9,7 +9,7 @@ const handler = async (event) => {
 
   try {
     const { data } = await axios.get(url);
-    return {
+    return { 
       statusCode: 200,
       body: JSON.stringify(data),
     };
