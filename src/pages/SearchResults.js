@@ -46,7 +46,9 @@ function Search() {
     e.preventDefault();
     setSearchResults([]);
 
-    const results = await fetchMyApi(searchQuery);
+    const results = await fetch(
+      `/.netlify/functions/fetch-data?query=${searchQuery}`
+    );
 
     setTimeout(function () {
       setSearchResults(results);
