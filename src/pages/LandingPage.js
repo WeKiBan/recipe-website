@@ -10,7 +10,7 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import Button from '@material-ui/core/Button';
 import { Link as RouterLink } from 'react-router-dom';
 import { useWindowSize } from '../helperFunctions/windowResize';
-import fetchMyApi from '../api';
+
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -86,7 +86,9 @@ function LandingPage() {
     e.preventDefault();
     setSearchResults([]);
     history.push('/SearchResults');
-    const results = await fetchMyApi(searchQuery);
+    const results = await fetch(
+      `/.netlify/functions/fetch-data?query=${searchQuery}`
+    );
 
     setTimeout(function () {
       setSearchResults(results);

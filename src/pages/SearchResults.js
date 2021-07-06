@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core';
 import { useGlobalContext } from '../contexts/context';
 import SearchBar from 'material-ui-search-bar';
 import Box from '@material-ui/core/Box';
-import fetchMyApi from '../api';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import Loader from 'react-loader-spinner';
 
