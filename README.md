@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Spoonly Recipe App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React recipe search application created using Edamam recipe API.
 
-## Available Scripts
+### Screenshot
 
-In the project directory, you can run:
+![](src/images/spoonlyScreenshot.png)
 
-### `npm start`
+### Built with
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- HTML/SCSS
+- Javascript
+- [Material-UI](https://mui.com/)- JS library.
+- [React](https://reactjs.org/) - JS library.
+- [React Router](https://reactrouter.com/) - JS library for routing in React
+- [React Hooks](https://reactjs.org/docs/hooks-intro.html)
+- [Context API](https://reactjs.org/docs/context.html)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### What I learned
 
-### `npm test`
+This was my first project using both Material-UI and context API so the whole project was a learning curve.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+With Context API I really like the way all the data is kept in the same place, allowing it to be edited and shared easily between components without having to pass it as props, which can sometimes be messy. I think for future projects it's this way is preferable as it seems much more manageable to keep all these global variables in the same place.
 
-### `npm run build`
+I loved using and learning Material-UI and its easy to see the benefits of using a framework like this to speed up development times when not every part has to be custom.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I believe this project has given me a solid grasp of React Hooks and the React framework in general and I am looking forward to gaining a more in depth knowledge while building future projects.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The user is first presented with a landing page where they can enter key words to find recipes. After hitting the search button they are presented with a list of recipes to choose from.
 
-### `npm run eject`
+![](src/images/resultsScreenshot.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Upon selecting the recipe an new tab containing the recipe and if the user would like to save this recipe they can select the bookmark icon on the left hand side of the recipe component.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![](src/images/bookmarkScreenshot.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+If the user bookmarks the recipe it will be added to their saved recipes page and committed to local storage. This was achieved using a useState hook and updating the local storage each time a change was made. Each time the application is then opened it first checks for any recipes saved in local storage and updates the app.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```javascript
+const fetchSavedRecipes = () => {
+  let savedRecipes = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+  if (!savedRecipes) {
+    savedRecipes = [];
+  }
+  return savedRecipes;
+};
+```
+the user can also delete these recipes by hitting the delete button found on each recipe card component.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Potential Future Features
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Adding a homepage which includes a feed of recipe suggestions.
+- Adding a log in feature so recipes can be accessed from different machines.
