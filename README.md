@@ -47,8 +47,10 @@ const fetchSavedRecipes = () => {
   return savedRecipes;
 };
 ```
-the user can also delete these recipes by hitting the delete button found on each recipe card component.
 
+The user can also delete these recipes by hitting the delete button found on each recipe card component.
+
+![](src/images/deleteScreenshot.png)
 
 ### Potential Future Features
 
