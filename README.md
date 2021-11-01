@@ -32,7 +32,7 @@ The user is first presented with a landing page where they can enter key words t
 
 ![](src/images/resultsScreenshot.png)
 
-Upon selecting the recipe an new tab containing the recipe and if the user would like to save this recipe they can select the bookmark icon on the left hand side of the recipe component.
+Upon selecting the recipe a new tab is opened and if the user would like to save this recipe they can select the bookmark icon on the left hand side of the recipe component.
 
 ![](src/images/bookmarkScreenshot.png)
 
